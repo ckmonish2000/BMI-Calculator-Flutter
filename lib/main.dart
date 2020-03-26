@@ -27,27 +27,28 @@ class InputPage extends StatefulWidget {
 }
 
 class _InputPageState extends State<InputPage> {
-  change(Genders i) {
-    if (i == Genders.male) {
-      if (malesel == inactive) {
-        malesel = active;
-        femalesel=inactive;
-      } else {
-        malesel = inactive;
+  // change(Genders i) {
+    // if (i == Genders.male) {
+    //   if (malesel == inactive) {
+    //     malesel = active;
+    //     femalesel=inactive;
+    //   } else {
+    //     malesel = inactive;
         
-      }
-    } else if (i == Genders.female) {
-      if (femalesel == inactive) {
-        femalesel = active;
-        malesel=inactive;
-      } else {
-        femalesel = inactive;
-      }
-    }
-  }
+    //   }
+    // } else if (i == Genders.female) {
+    //   if (femalesel == inactive) {
+    //     femalesel = active;
+    //     malesel=inactive;
+    //   } else {
+    //     femalesel = inactive;
+    //   }
+    // }
+   
 
-  var malesel = inactive;
-  var femalesel = inactive;
+  // }
+
+ Genders gndr;
   @override
   Widget build(BuildContext context) {
     return Scaffold(
@@ -63,7 +64,7 @@ class _InputPageState extends State<InputPage> {
                     child: GestureDetector(
                       onTap: () {
                         setState(() {
-                          change(Genders.male);
+                          gndr=Genders.male;
                         });
                       },
                       child: gender(
@@ -72,7 +73,7 @@ class _InputPageState extends State<InputPage> {
                           size: 80,
                         ),
                         str: "Male",
-                        clr: malesel,
+                        clr: gndr == Genders.male? active : inactive,
                       ),
                     ),
                   ),
@@ -83,7 +84,7 @@ class _InputPageState extends State<InputPage> {
                         child: GestureDetector(
                       onTap: () {
                         setState(() {
-                          change(Genders.female);
+                          gndr=Genders.female;
                         });
                       },
                       child: gender(
@@ -92,7 +93,7 @@ class _InputPageState extends State<InputPage> {
                           size: 80,
                         ),
                         str: "Female",
-                        clr: femalesel,
+                        clr: gndr == Genders.female? active:inactive,
                       ),
                     )),
                   ),
