@@ -5,6 +5,7 @@ import 'package:font_awesome_flutter/font_awesome_flutter.dart';
 
 final active = Color(0xFF1D1E33);
 final inactive = Color(0xFF111328);
+enum Genders {male,female}
 void main() => runApp(BMICalculator());
 
 class BMICalculator extends StatelessWidget {
@@ -26,8 +27,8 @@ class InputPage extends StatefulWidget {
 }
 
 class _InputPageState extends State<InputPage> {
-  change(int i) {
-    if (i == 1) {
+  change(Genders i) {
+    if (i == Genders.male) {
       if (malesel == inactive) {
         malesel = active;
         femalesel=inactive;
@@ -35,7 +36,7 @@ class _InputPageState extends State<InputPage> {
         malesel = inactive;
         
       }
-    } else if (i == 2) {
+    } else if (i == Genders.female) {
       if (femalesel == inactive) {
         femalesel = active;
         malesel=inactive;
@@ -62,7 +63,7 @@ class _InputPageState extends State<InputPage> {
                     child: GestureDetector(
                       onTap: () {
                         setState(() {
-                          change(1);
+                          change(Genders.male);
                         });
                       },
                       child: gender(
@@ -82,7 +83,7 @@ class _InputPageState extends State<InputPage> {
                         child: GestureDetector(
                       onTap: () {
                         setState(() {
-                          change(2);
+                          change(Genders.female);
                         });
                       },
                       child: gender(
