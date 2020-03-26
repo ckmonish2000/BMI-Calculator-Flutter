@@ -2,14 +2,16 @@ import 'package:flutter/material.dart';
 import 'input.dart';
 
 class gender extends StatelessWidget {
-  gender({this.gicon, this.str,this.clr});
+  gender({this.gicon, this.str,this.clr,this.press});
   Icon gicon;
   String str;
   Color clr;
+  final Function press;
 
   @override
   Widget build(BuildContext context) {
     return ReuseableCard(
+      onPress: press,
       colour: clr,
       cardChild: Center(
         child: Container(

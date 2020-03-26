@@ -2,6 +2,7 @@ import 'package:flutter/material.dart';
 import 'input.dart';
 import 'gender.dart';
 import 'package:font_awesome_flutter/font_awesome_flutter.dart';
+import 'constants.dart';
 
 final active = Color(0xFF1D1E33);
 final inactive = Color(0xFF111328);
@@ -9,6 +10,7 @@ enum Genders {male,female}
 void main() => runApp(BMICalculator());
 
 class BMICalculator extends StatelessWidget {
+  
   @override
   Widget build(BuildContext context) {
     return MaterialApp(
@@ -47,6 +49,7 @@ class _InputPageState extends State<InputPage> {
    
 
   // }
+  var height=180;
 
  Genders gndr;
   @override
@@ -61,41 +64,37 @@ class _InputPageState extends State<InputPage> {
               children: <Widget>[
                 Expanded(
                   child: Container(
-                    child: GestureDetector(
-                      onTap: () {
+                    child: gender(
+                      press: (){
                         setState(() {
                           gndr=Genders.male;
                         });
                       },
-                      child: gender(
-                        gicon: Icon(
-                          FontAwesomeIcons.mars,
-                          size: 80,
-                        ),
-                        str: "Male",
-                        clr: gndr == Genders.male? active : inactive,
+                      gicon: Icon(
+                        FontAwesomeIcons.mars,
+                        size: 80,
                       ),
+                      str: "Male",
+                      clr: gndr == Genders.male? active : inactive,
                     ),
                   ),
                 ),
                 Expanded(
                   child: Container(
                     child: Center(
-                        child: GestureDetector(
-                      onTap: () {
-                        setState(() {
-                          gndr=Genders.female;
-                        });
-                      },
-                      child: gender(
-                        gicon: Icon(
-                          FontAwesomeIcons.venus,
-                          size: 80,
-                        ),
-                        str: "Female",
-                        clr: gndr == Genders.female? active:inactive,
-                      ),
-                    )),
+                        child: gender(
+                          press: (){
+                            setState(() {
+                              gndr=Genders.female;
+                            });
+                          },
+                          gicon: Icon(
+                            FontAwesomeIcons.venus,
+                            size: 80,
+                          ),
+                          str: "Female",
+                          clr: gndr == Genders.female? active:inactive,
+                        )),
                   ),
                 ),
               ],
@@ -104,6 +103,31 @@ class _InputPageState extends State<InputPage> {
           Expanded(
             child: ReuseableCard(
               colour: inactive,
+              cardChild: Column(
+                mainAxisAlignment: MainAxisAlignment.center,
+                  children:[
+                   Center(child: Text("Height",style:Txt,),),
+                   
+                   Row(
+                     mainAxisAlignment:MainAxisAlignment.center,
+                     crossAxisAlignment: CrossAxisAlignment.baseline,
+                     textBaseline: TextBaseline.alphabetic,
+                     children:[
+                       
+                       Text("$height",style: Knum,),
+                       Text('cm',style: Txt,)
+                     ]
+                     
+                   ),
+                   Slider(value: height.toDouble(), min: 120.0,max: 220.0,onChanged: (double newvalue){
+                     print(newvalue);
+                     setState(() {
+                       height=newvalue.toInt();
+                     });
+                   },)
+                ]
+              ),
+
             ),
           ),
           Expanded(
