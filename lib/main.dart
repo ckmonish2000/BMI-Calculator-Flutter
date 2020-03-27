@@ -4,6 +4,7 @@ import 'gender.dart';
 import 'package:font_awesome_flutter/font_awesome_flutter.dart';
 import 'constants.dart';
 import 'results_page.dart';
+import 'calculator.dart';
 
 final active = Color(0xFF1D1E33);
 final inactive = Color(0xFF111328);
@@ -265,14 +266,16 @@ class _InputPageState extends State<InputPage> {
           )),
           GestureDetector(
                 onTap: (){
-                  Navigator.push(context, MaterialPageRoute(builder: (context)=>ResultPage()));
+                  CalculatorBrain cal=CalculatorBrain(height:height,weight: weight);
+                  Navigator.push(context, MaterialPageRoute(builder: (context)=>ResultPage(bmiresult: cal.calculateBMI(), resultinter: cal.getInterpretation(), resulttxt: cal.getResult())));
+
                 },
                 child: Container(
                   
                   width: 500,
                   color: Colors.pink,
                   height: 50.0,
-                  child:Center(child:Text('Calculate',))
+                  child:Center(child:Text('Calculate',style:Kbtn ,))
                 ),
               )
 
