@@ -3,6 +3,7 @@ import 'input.dart';
 import 'gender.dart';
 import 'package:font_awesome_flutter/font_awesome_flutter.dart';
 import 'constants.dart';
+import 'results_page.dart';
 
 final active = Color(0xFF1D1E33);
 final inactive = Color(0xFF111328);
@@ -259,8 +260,22 @@ class _InputPageState extends State<InputPage> {
                   colour: inactive,
                 ),
               ),
+              
             ],
-          ))
+          )),
+          GestureDetector(
+                onTap: (){
+                  Navigator.push(context, MaterialPageRoute(builder: (context)=>ResultPage()));
+                },
+                child: Container(
+                  
+                  width: 500,
+                  color: Colors.pink,
+                  height: 50.0,
+                  child:Center(child:Text('Calculate',))
+                ),
+              )
+
         ]));
   }
 }
